@@ -1,0 +1,30 @@
+.container-video {
+  margin: 0;
+  video {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+  }
+  .homepage-content {
+    position: relative;
+    margin-top: 100px;
+    padding: 100px;
+    display: block;
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .title-3 {
+    margin-top: 30px;
+
+    button {
+      background-color: black;
+      padding: 10px;
+      color: #fff;
+      &:hover {
+        background-color: #333;
+      }
+    }
+  }
+}

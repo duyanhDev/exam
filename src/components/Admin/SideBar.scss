@@ -1,0 +1,42 @@
+.Sidebar {
+  .css-dip3t8 {
+    position: relative;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: no-repeat;
+  }
+  .css-12w9als {
+    color: cadetblue;
+    font-weight: 500;
+  }
+
+  .nav-sidebar {
+    background-image: url("../../assets/bg2.jpg");
+    background-size: cover;
+  }
+
+  .name-title {
+    height: 35px;
+    min-height: 35px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    // background: linear-gradient(
+    //   45deg,
+    //   rgb(21, 87, 205) 0%,
+    //   rgb(90, 225, 255) 100%
+    // );
+    margin-top: 15px;
+  }
+  .link-to {
+    color: cadetblue;
+    text-decoration: none;
+  }
+}
