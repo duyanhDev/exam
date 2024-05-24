@@ -6,7 +6,6 @@ import { FaUser } from "react-icons/fa";
 import { MdQuiz } from "react-icons/md";
 import { Link } from "react-router-dom";
 const SideBar = (props) => {
-  console.log(props.collapsed);
   return (
     <div className="Sidebar">
       <Sidebar
@@ -17,7 +16,9 @@ const SideBar = (props) => {
         }`}
       >
         <Menu>
-          <div className="name-title">Duy Anh</div>
+          <div className="name-title">
+            <Link to={"/"}>Duy Anh</Link>
+          </div>
           <MenuItem>
             {" "}
             <Link className="link-to" to="/admins">

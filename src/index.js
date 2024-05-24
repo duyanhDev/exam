@@ -12,6 +12,7 @@ import Admin from "./components/Admin/Admin";
 import HomPage from "./components/Home/HomePage";
 import DashBoar from "./components/Admin/Content/DashBoar";
 import ManageUsers from "./components/Admin/Content/ManageUser";
+import Login from "./components/Auth/Login";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
@@ -27,6 +28,7 @@ root.render(
             <Route index element={<DashBoar />} />
             <Route path="manage-users" element={<ManageUsers />} />
           </Route>
+          <Route path="/login" element={<Login />}></Route>
         </Routes>
         <ToastContainer
           position="top-right"

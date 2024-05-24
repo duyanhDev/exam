@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FaPlus } from "react-icons/fa";
-import { postCreateNewUser } from "../../../services/apiService";
+import { pushDataUser } from "../../../services/apiService";
 import { toast } from "react-toastify";
+import _, { isEmpty } from "lodash";
 
-const ModelCreateUser = (props) => {
-  const { show, setShow } = props;
+const ModelUpdateUser = (props) => {
+  // đóng mở
+  const { show, setShow, dataUpdate } = props;
 
   const handleClose = () => {
     setShow(false);
@@ -16,6 +18,7 @@ const ModelCreateUser = (props) => {
     setRole("USER");
     setImage("");
     setPreviewImage("");
+    props.resetUpdateDate();
   };
 
   const [email, setEmail] = useState("");
@@ -24,6 +27,19 @@ const ModelCreateUser = (props) => {
   const [image, setImage] = useState("");
   const [role, setRole] = useState("Admin");
   const [previewImage, setPreviewImage] = useState("");
+
+  useEffect(() => {
+    if (!isEmpty(dataUpdate)) {
+      // updata sate
+      setEmail(dataUpdate.email);
+      setUsername(dataUpdate.username);
+      setRole(dataUpdate.role);
+      // setImage("");
+      if (dataUpdate.image) {
+        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
+      }
+    }
+  }, [dataUpdate]);
 
   const handleUploadImage = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -49,27 +65,17 @@ const ModelCreateUser = (props) => {
       return;
     }
 
-    if (!password) {
-      toast.error("Vui lòng nhập password");
-      return;
-    }
-
     try {
-      let data = await postCreateNewUser(
-        email,
-        password,
-        username,
-        role,
-        image
-      );
+      let data = await pushDataUser(dataUpdate.id, username, role, image);
+      console.log("Response:", data);
 
       if (data && data.EC === 0) {
         toast.success(data.EM);
         handleClose();
 
         // reset Lại Api
-        props.setCurrentPage(1);
-        await props.fetchListUsersWithPaginate(1);
+        // props.setCurrentPage(1);
+        await props.fetchListUsersWithPaginate(props.currentPage);
       }
       if (data && data.EC !== 0) {
         toast.error(data.EM);
@@ -90,13 +96,14 @@ const ModelCreateUser = (props) => {
         className="modal-add-user"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add new user</Modal.Title>
+          <Modal.Title>Update user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="row g-3" onSubmit={handSumbitUser}>
             <div className="col-md-6">
               <label className="form-label">Email</label>
               <input
+                disabled
                 type="email"
                 className="form-control"
                 value={email}
@@ -110,6 +117,7 @@ const ModelCreateUser = (props) => {
                 className="form-control"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled
               />
             </div>
 
@@ -166,4 +174,4 @@ const ModelCreateUser = (props) => {
   );
 };
 
-export default ModelCreateUser;
+export default ModelUpdateUser;
