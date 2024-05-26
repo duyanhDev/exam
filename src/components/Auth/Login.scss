@@ -1,13 +1,39 @@
 .login-container {
+  .loader-icon {
+    margin-right: 7px;
+    top: 2px;
+    animation: spin 1s infinite linear;
+    color: #00d4ff;
+  }
+
+  @keyframes spin {
+    from {
+      transform: scale(1) rotate(0deg);
+    }
+    to {
+      transform: scale(1) rotate(360deg);
+    }
+  }
+  video {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+  }
   .header {
     height: 45px;
     text-align: right;
+    position: relative;
+    right: 30px;
+    top: 10px;
+    color: #fff;
   }
 
   .title {
+    position: relative;
     padding: 20px 0;
     font-size: 20px;
     text-align: center;
+    color: #fff;
   }
 
   .welcome {
@@ -19,6 +45,7 @@
       position: relative;
       width: 100%;
       padding-right: 2.5rem;
+
       .eye-password {
         position: absolute;
         top: 69%;
@@ -27,37 +54,36 @@
         color: #666;
         right: 5rem;
       }
-      .eye-password::after {
-        content: "";
-        position: absolute;
-        width: 2px;
-        height: 100%;
-        height: 90%;
-        background-color: #696969;
-        transform: rotate(140deg);
-        top: 3px;
-        left: 7px;
-        display: none;
-      }
 
-      .eye-password.show-password::after {
-        display: block;
+      label {
+        color: #fff;
       }
     }
-
+    span {
+      cursor: pointer;
+      color: #fff;
+      position: relative;
+    }
     input {
       margin-bottom: 15px;
       margin-top: 3px;
     }
 
     button {
-      width: 100%;
+      width: 92%;
       height: 40px;
       border: none;
       margin: 20px 0;
       border-radius: 5px;
       color: white;
-      background-color: black;
+      background-color: #fff;
+      position: relative;
+
+      &:disabled {
+        background: #fff;
+        color: black;
+        cursor: no-drop;
+      }
     }
   }
 }

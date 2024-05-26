@@ -1,3 +1,4 @@
+import { delay } from "lodash";
 import axios from "../untils/axiosCustomize";
 
 const postCreateNewUser = (email, password, username, role, image) => {
@@ -32,10 +33,35 @@ const deleteDataUser = (id) => {
 const getUserWithPaginate = (page, limit) => {
   return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
 };
+
+const postLoginUser = (email, password) => {
+  return axios.post("http://localhost:8081/api/v1/login", {
+    email: email,
+    password: password,
+    delay: 5000,
+  });
+};
+const postResigister = (email, username, password) => {
+  return axios.post("http://localhost:8081/api/v1/register", {
+    email: email,
+    username: username,
+    password: password,
+  });
+};
+
+// Quizz
+
+const getQuizByUser = () => {
+  return axios.get("api/v1/quiz-by-participant");
+};
+
 export {
   postCreateNewUser,
   getAllUsers,
   pushDataUser,
   deleteDataUser,
   getUserWithPaginate,
+  postLoginUser,
+  postResigister,
+  getQuizByUser,
 };

@@ -1,0 +1,68 @@
+.login-container {
+  video {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+  }
+  .header {
+    height: 45px;
+    text-align: right;
+    position: relative;
+    right: 30px;
+    top: 10px;
+    color: #fff;
+  }
+
+  .title {
+    position: relative;
+    padding: 20px 0;
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .welcome {
+    font-size: 20px;
+    padding: 10px 0;
+  }
+  .content-form {
+    .form-group {
+      position: relative;
+      width: 100%;
+      padding-right: 2.5rem;
+
+      .eye-password {
+        position: absolute;
+        top: 69%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #666;
+        right: 5rem;
+      }
+
+      label {
+        color: #fff;
+      }
+    }
+    span {
+      cursor: pointer;
+      color: #fff;
+      position: relative;
+    }
+    input {
+      margin-bottom: 15px;
+      margin-top: 3px;
+    }
+
+    button {
+      width: 92%;
+      height: 40px;
+      border: none;
+      margin: 20px 0;
+      border-radius: 5px;
+      color: white;
+      background-color: black;
+      position: relative;
+    }
+  }
+}
