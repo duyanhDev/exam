@@ -10,6 +10,16 @@ import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./components/Auth/Register";
 import LisQuiz from "./components/User/ListQuiz";
+import DetailQuiz from "./components/User/DetailQuiz";
+
+const NotFound = () => {
+  return (
+    <div class="container mt-3 alert alert-danger" role="alert">
+      A simple dark alert—check it out!
+    </div>
+  );
+};
+
 const Layout = (props) => {
   return (
     <>
@@ -18,12 +28,15 @@ const Layout = (props) => {
           <Route index element={<HomPage />} />
           <Route path="/users" element={<LisQuiz />} />
         </Route>
+        <Route path="quiz/:id" element={<DetailQuiz />} />
         <Route path="/admins" element={<Admin />}>
           <Route index element={<DashBoar />} />
           <Route path="manage-users" element={<ManageUsers />} />
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer
         position="top-right"

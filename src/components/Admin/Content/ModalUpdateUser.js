@@ -72,7 +72,6 @@ const ModelUpdateUser = (props) => {
       if (data && data.EC === 0) {
         toast.success(data.EM);
         handleClose();
-
         // reset Lại Api
         // props.setCurrentPage(1);
         await props.fetchListUsersWithPaginate(props.currentPage);
