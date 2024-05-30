@@ -1,14 +1,12 @@
 import _ from "lodash";
 const Question = (props) => {
   const { data, index } = props;
-  console.log("data prop ", data);
   if (_.isEmpty(data)) {
     return <></>;
   }
 
   const handleHanleCheckbox = (e, aId, qID) => {
     // console.log("check ,", e.target.checked);
-    console.log("id", aId, qID);
     props.handleCheckbox(aId, qID);
   };
   return (
@@ -31,9 +29,11 @@ const Question = (props) => {
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    checked={a.isSelect}
+                    checked={a.isSelected}
                     id="flexCheckDefault"
-                    onChange={(e) => handleHanleCheckbox(e, a.id, data.quizId)}
+                    onChange={(e) =>
+                      handleHanleCheckbox(e, a.id, data.questionId)
+                    }
                   />
                   <label
                     className="form-check-label"

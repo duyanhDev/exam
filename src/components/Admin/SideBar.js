@@ -17,7 +17,9 @@ const SideBar = (props) => {
       >
         <Menu>
           <div className="name-title">
-            <Link to={"/"}>Duy Anh</Link>
+            <Link to={"/"} className="link-title">
+              Duy Anh
+            </Link>
           </div>
           <MenuItem>
             {" "}

@@ -1,4 +1,3 @@
-import { delay } from "lodash";
 import axios from "../untils/axiosCustomize";
 
 const postCreateNewUser = (email, password, username, role, image) => {
@@ -58,6 +57,14 @@ const getQuizByUser = () => {
 const getDataQuiz = (id) => {
   return axios.get(`api/v1/questions-by-quiz?quizId=${id}`);
 };
+
+// sumbit dạng raw api
+
+const postSubmitQuiz = (data) => {
+  console.log("check data log", { ...data });
+  return axios.post(`api/v1/quiz-submit`, { ...data });
+};
+
 export {
   postCreateNewUser,
   getAllUsers,
@@ -68,4 +75,5 @@ export {
   postResigister,
   getQuizByUser,
   getDataQuiz,
+  postSubmitQuiz,
 };

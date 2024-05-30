@@ -7,7 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doLogout } from "../../redux/action/useAction";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { toast } from "react-toastify";
 import "./Header.scss";
+
 function Header() {
   const navigate = useNavigate();
 
@@ -20,6 +22,7 @@ function Header() {
   const account = useSelector((state) => state.user.accout);
 
   const handleLogout = () => {
+    toast.success("Logout thành công");
     dispatch(doLogout());
     navigate("/login");
   };
@@ -28,7 +31,7 @@ function Header() {
       <Navbar expand="lg" className="bg-body-tertiary nav">
         <Container>
           <Link to="/" className="navbar-brand">
-            Duy Anh
+            IELTS Online Tests
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -59,23 +62,38 @@ function Header() {
                 </>
               ) : (
                 <>
-                  <button className="btn-login" onClick={handleLogin}>
-                    {account.username}
-                  </button>
-                  <button className="btn-signup" onClick={handleLogout}>
-                    Logout
-                  </button>
+                  <NavDropdown
+                    title={
+                      <img
+                        src={`data:image/jpeg;base64,${account.image}`}
+                        alt="Setting"
+                        className="nav-image"
+                      />
+                    }
+                    id="basic-nav-dropdown"
+                  >
+                    <div className="item-drop">
+                      <NavDropdown.Item>
+                        <button className="btn-user" onClick={handleLogin}>
+                          {account.username}
+                        </button>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <button className="btn-user" onClick={handleLogout}>
+                          Đăng Xuất
+                        </button>
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item
+                        style={{ textAlign: "center" }}
+                        href="#action/3.4"
+                      >
+                        Profile
+                      </NavDropdown.Item>
+                    </div>
+                  </NavDropdown>
                 </>
               )}
-              {/* <NavDropdown title="Setting" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Logout</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Profile</NavDropdown.Item>
-            </NavDropdown> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

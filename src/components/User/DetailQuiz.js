@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { getDataQuiz } from "../../services/apiService";
+import { getDataQuiz, postSubmitQuiz } from "../../services/apiService";
 import _ from "lodash";
 import "./DetailQuiz.scss";
 import Question from "./Question";
@@ -13,7 +13,6 @@ const DetailQuiz = (props) => {
 
   const [index, setIndex] = useState(0);
 
-  console.log("location", location);
   // mooxi laan quizID thay doi thi api thay doi
   useEffect(() => {
     fectQuestions();
@@ -28,7 +27,6 @@ const DetailQuiz = (props) => {
         .groupBy("id")
         // `key` is group's name (color), `value` is the array of objects
         .map((value, key) => {
-          console.log("value", value, "key", key);
           let answers = [];
           let questionDescription,
             image = null;
@@ -38,18 +36,17 @@ const DetailQuiz = (props) => {
               image = item.image;
             }
 
-            item.answers.isSelect = false;
+            item.answers.isSelected = false;
             answers.push(item.answers);
           });
 
-          return { quizId: key, answers, questionDescription, image };
+          return { questionId: key, answers, questionDescription, image };
         })
         .value();
 
       setDataQuiz(data);
     }
   };
-  console.log("check data ", dataQuiz);
 
   const handlePrev = () => {
     if (index - 1 < 0) return;
@@ -61,27 +58,80 @@ const DetailQuiz = (props) => {
   };
 
   const handleCheckbox = (answerID, questionId) => {
-    let dataQuizClone = _.cloneDeep(dataQuiz);
+    let dataQuizClone = _.cloneDeep(dataQuiz); // react doesn't merge state
 
-    let question = dataQuizClone.find((item) => +item.quizId === +questionId);
+    let question = dataQuizClone.find(
+      (item) => +item.questionId === +questionId
+    );
     if (question && question.answers) {
-      let b = question.answers.map((item) => {
+      question.answers = question.answers.map((item) => {
         if (+item.id === +answerID) {
-          item.isSelect = !item.isSelect;
+          item.isSelected = !item.isSelected;
         }
         return item;
       });
-      question.answers = b;
-      console.log(b);
     }
 
-    let index = dataQuizClone.findIndex((item) => +item.quizId === +questionId);
+    let index = dataQuizClone.findIndex(
+      (item) => +item.questionId === +questionId
+    );
 
     if (index > -1) {
       dataQuizClone[index] = question;
       setDataQuiz(dataQuizClone);
     }
   };
+
+  // finish xử lí data
+
+  const handleFinishQuiz = async () => {
+    //   {
+    //     "quizId": 1,
+    //     "answers": [
+    //         {
+    //             "questionId": 1,
+    //             "userAnswerId": [3]
+    //         },
+    //         {
+    //             "questionId": 2,
+    //             "userAnswerId": [6]
+    //         }
+    //     ]
+    // }
+    let payload = {
+      quizId: +quizId,
+      answers: [],
+    };
+    let answers = [];
+
+    // todo
+
+    console.log("check data raw", dataQuiz);
+    if (dataQuiz && dataQuiz.length > 0) {
+      dataQuiz.forEach((question) => {
+        let questionId = question.questionId;
+        let userAnswerId = [];
+
+        question.answers.forEach((a) => {
+          if (a.isSelected === true) {
+            userAnswerId.push(a.id);
+          }
+        });
+        answers.push({
+          questionId: +questionId,
+          userAnswerId: userAnswerId,
+        });
+      });
+      payload.answers = answers;
+      console.log("final payload", payload);
+
+      //sumbit Api
+
+      let res = await postSubmitQuiz(payload);
+      console.log("check res", res);
+    }
+  };
+
   return (
     <div className="detail-quiz-container">
       <div className="left-content">
@@ -108,7 +158,12 @@ const DetailQuiz = (props) => {
           <button className="btn btn-primary" onClick={handleNext}>
             Next
           </button>
-          <button className="btn btn-warning">Finish</button>
+          <button
+            onClick={() => handleFinishQuiz()}
+            className="btn btn-warning"
+          >
+            Finish
+          </button>
         </div>
       </div>
       <div className="rigt-content">count down</div>
