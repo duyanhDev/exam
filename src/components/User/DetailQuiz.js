@@ -4,6 +4,7 @@ import { getDataQuiz, postSubmitQuiz } from "../../services/apiService";
 import _ from "lodash";
 import "./DetailQuiz.scss";
 import Question from "./Question";
+import ModalResult from "./ModalResult";
 const DetailQuiz = (props) => {
   const params = useParams();
   const quizId = params.id;
@@ -12,6 +13,14 @@ const DetailQuiz = (props) => {
   const [dataQuiz, setDataQuiz] = useState([]);
 
   const [index, setIndex] = useState(0);
+
+  // hiên modal
+
+  const [isShowModalResult, setIsShowModalResult] = useState(false);
+
+  // data Modal result
+
+  const [dataModalResult, setDataModalResult] = useState("");
 
   // mooxi laan quizID thay doi thi api thay doi
   useEffect(() => {
@@ -129,6 +138,16 @@ const DetailQuiz = (props) => {
 
       let res = await postSubmitQuiz(payload);
       console.log("check res", res);
+      if (res && res.EC === 0) {
+        setDataModalResult({
+          countCorrect: res.DT.countCorrect,
+          countTotal: res.DT.countTotal,
+          quizData: res.DT.quizData,
+        });
+        setIsShowModalResult(true);
+      } else {
+        alert("some thing wrongs");
+      }
     }
   };
 
@@ -167,6 +186,11 @@ const DetailQuiz = (props) => {
         </div>
       </div>
       <div className="rigt-content">count down</div>
+      <ModalResult
+        show={isShowModalResult}
+        setShow={setIsShowModalResult}
+        dataModalResult={dataModalResult}
+      />
     </div>
   );
 };

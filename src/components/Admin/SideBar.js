@@ -35,10 +35,14 @@ const SideBar = (props) => {
               </Link>
             </MenuItem>
             <MenuItem className="title">
-              <MdQuiz /> Quản Lí Bài Quiz
+              <Link className="link-to" to={"/admins/manage-quizzes"}>
+                <MdQuiz /> Quản Lí Bài Quiz
+              </Link>
             </MenuItem>
             <MenuItem className="title">
-              <MdQuiz /> Quản Lí Câu Hỏi
+              <Link className="link-to" to={"/admins/manage-questions"}>
+                <MdQuiz /> Quản Lí Câu Hỏi
+              </Link>
             </MenuItem>
           </SubMenu>
         </Menu>

@@ -1,0 +1,70 @@
+.questions-container {
+  padding: 15px;
+
+  .title {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .question-content {
+    display: flex;
+    gap: 20px;
+    .description {
+      width: 50%;
+    }
+    .group_upload {
+      padding-top: 15px;
+      .label-up {
+        height: 30px;
+        border: 1px solid red;
+        border-radius: 5px;
+        padding: 0px 10px;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
+    .btn-add {
+      padding-top: 15px;
+      .icon-add {
+        font-size: 30px;
+        color: black;
+        cursor: pointer;
+      }
+      .icon-remove {
+        margin-left: 10px;
+        font-size: 30px;
+        color: black;
+        cursor: pointer;
+      }
+    }
+  }
+  .q-answer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    .answers-content {
+      display: flex;
+      gap: 10px;
+    }
+    .answser-name {
+      width: 50%;
+    }
+    .btn-group {
+      .icon-size {
+        font-size: 30px;
+        .icon-add {
+          color: green;
+          cursor: pointer;
+        }
+
+        .icon-remove {
+          margin-left: 10px;
+
+          color: orange;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

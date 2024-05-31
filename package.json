@@ -9,6 +9,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.4.0",
+    "react-perfect-scrollbar": "^1.5.8",
     "react-redux": "8.0.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
@@ -47,10 +48,13 @@
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "react-bootstrap": "^2.10.2",
+    "react-bootstrap-accordion": "^1.0.0",
     "react-paginate": "^8.2.0",
     "react-pro-sidebar": "^1.1.0",
+    "react-select": "^5.8.0",
     "react-toastify": "^10.0.5",
     "redux-persist": "^6.0.0",
-    "sass": "^1.77.1"
+    "sass": "^1.77.1",
+    "uuid": "^9.0.1"
   }
 }

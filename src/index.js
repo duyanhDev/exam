@@ -4,8 +4,9 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { BrowserRouter } from "react-router-dom";
-import "nprogress/nprogress.css";
 import { PersistGate } from "redux-persist/integration/react";
+import "nprogress/nprogress.css";
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 import Layout from "./Layout";
 
