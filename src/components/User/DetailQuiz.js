@@ -115,7 +115,6 @@ const DetailQuiz = (props) => {
 
     // todo
 
-    console.log("check data raw", dataQuiz);
     if (dataQuiz && dataQuiz.length > 0) {
       dataQuiz.forEach((question) => {
         let questionId = question.questionId;

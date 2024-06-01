@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import "./Questions.scss";
+import "./QuizQA.scss";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from "react-icons/ai";
 import { RiImageAddFill } from "react-icons/ri";
@@ -13,18 +13,14 @@ import {
   getViewQuiz,
   postCreateNewQuestionForQuiz,
   postCreateNewAnswerForQuestion,
+  getQuizWithQA,
 } from "../../../../services/apiService";
 
-// const options = [
-//   { value: "chocolate", label: "Chocolate" },
-//   { value: "strawberry", label: "Strawberry" },
-//   { value: "vanilla", label: "Vanilla" },
-// ];
-
-const Questions = (props) => {
+const QuizQA = (props) => {
   const [selectedQuiz, setSelectedQuiz] = useState({});
   const [isVaidQuestion, setiSValidQuestion] = useState(false);
   const [isVaidAnswer, setisVaidAnswer] = useState(false);
+
   const inittQuestion = [
     {
       id: uuidv4(),
@@ -70,6 +66,44 @@ const Questions = (props) => {
       });
 
       setLisQuiz(newQuiz);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedQuiz && selectedQuiz.value) {
+      fectQuizWithQA();
+    }
+  }, [selectedQuiz]);
+
+  const urltoFile = (url, filename, mimeType) => {
+    return fetch(url)
+      .then((res) => res.arrayBuffer())
+      .then((buf) => new File([buf], filename, { type: mimeType }));
+  };
+
+  //Usage example:
+
+  const fectQuizWithQA = async () => {
+    let res = await getQuizWithQA(selectedQuiz.value);
+    console.log(res);
+
+    if (res && res.EC === 0) {
+      // convertbase 64
+      let newQA = [];
+      for (let i = 0; i < res.DT.qa.length; i++) {
+        let q = res.DT.qa[i];
+        if (q.imageFile) {
+          q.imageName = `Question-${q.id}.png`;
+          q.imageFile = await urltoFile(
+            `data:image/png;base64,${q.imageFile}`,
+            `Question-${q.id}.png`,
+            `image/png`
+          );
+        }
+        newQA.push(q);
+      }
+      console.log("check qa", newQA);
+      setQuesttion(newQA);
     }
   };
 
@@ -252,9 +286,7 @@ const Questions = (props) => {
 
   return (
     <div className="questions-container">
-      <div className="title">
-        <h1>Questions</h1>
-      </div>
+      <div className="title"></div>
 
       <div className="add-new-question">
         <div className="col-6 form-group select-container">
@@ -452,4 +484,4 @@ const Questions = (props) => {
   );
 };
 
-export default Questions;
+export default QuizQA;

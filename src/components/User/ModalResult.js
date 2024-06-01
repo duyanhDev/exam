@@ -22,7 +22,7 @@ function ModalResult(props) {
             Total Questions:<b> {dataModalResult.countTotal}</b>
           </div>
           <div>
-            Total Questions: <b>{dataModalResult.countCorrect}</b>
+            Total correct answer: <b>{dataModalResult.countCorrect}</b>
           </div>
         </Modal.Body>
         <Modal.Footer>

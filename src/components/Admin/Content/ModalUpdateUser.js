@@ -67,7 +67,6 @@ const ModelUpdateUser = (props) => {
 
     try {
       let data = await pushDataUser(dataUpdate.id, username, role, image);
-      console.log("Response:", data);
 
       if (data && data.EC === 0) {
         toast.success(data.EM);

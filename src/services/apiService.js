@@ -90,7 +90,7 @@ const putQuizData = (id, description, name, difficulty, image) => {
   data.append("description", description);
   data.append("name", name);
   data.append("difficulty", difficulty);
-  data.append("quizimage", image);
+  data.append("quizImage", image);
 
   return axios.put("api/v1/quiz", data);
 };
@@ -99,6 +99,35 @@ const delteQuizData = (id) => {
   return axios.delete(`api/v1/quiz/${id}`);
 };
 
+const postCreateNewQuestionForQuiz = (quiz_id, description, image) => {
+  const data = new FormData();
+
+  data.append("quiz_id", quiz_id);
+  data.append("description", description);
+  data.append("questionImage", image);
+
+  return axios.post("api/v1/question", data);
+};
+
+const postCreateNewAnswerForQuestion = (
+  description,
+  correct_answer,
+  question_id
+) => {
+  return axios.post("api/v1/answer", {
+    description,
+    correct_answer,
+    question_id,
+  });
+};
+
+const postAssingQuiz = (quizId, userId) => {
+  return axios.post("api/v1/quiz-assign-to-user", { quizId, userId });
+};
+
+const getQuizWithQA = (quizId) => {
+  return axios.get(`api/v1/quiz-with-qa/${quizId}`);
+};
 export {
   postCreateNewUser,
   getAllUsers,
@@ -114,4 +143,8 @@ export {
   getViewQuiz,
   putQuizData,
   delteQuizData,
+  postCreateNewQuestionForQuiz,
+  postCreateNewAnswerForQuestion,
+  postAssingQuiz,
+  getQuizWithQA,
 };

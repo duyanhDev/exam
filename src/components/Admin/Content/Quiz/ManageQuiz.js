@@ -9,6 +9,8 @@ import ManageViewQuiz from "./ManageViewQuiz";
 import ManagelUpdateQuiz from "./ManagelUpdateQuiz";
 import MangageDeleteQuiz from "./MangageDeleteQuiz";
 import ManageShowQuiz from "./ManageShowQuiz";
+import QuizQA from "./QuizQA";
+import AssignQuiz from "./AssignQuiz";
 
 const options = [
   { value: "EASY", label: "EASY" },
@@ -80,7 +82,6 @@ const ManageQuiz = () => {
   // delete
 
   const handledeleteQuiz = (item) => {
-    console.log(item);
     setDataDelteQuiz(item);
     setShowDelete(true);
   };
@@ -90,6 +91,10 @@ const ManageQuiz = () => {
   useEffect(() => {
     fectQuiz();
   }, []);
+
+  const resetUpdateDate = () => {
+    setDataUpdateQuiz("");
+  };
 
   const fectQuiz = async () => {
     let res = await getViewQuiz();
@@ -171,6 +176,21 @@ const ManageQuiz = () => {
             </div>
           </Accordion.Body>
         </Accordion.Item>
+
+        {/*  */}
+
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>Updatee Q/A Quizz</Accordion.Header>
+          <Accordion.Body>
+            <QuizQA />
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>Assign Q/A Quizz</Accordion.Header>
+          <Accordion.Body>
+            <AssignQuiz />
+          </Accordion.Body>
+        </Accordion.Item>
       </Accordion>
 
       <div className="list-detail">
@@ -185,6 +205,7 @@ const ManageQuiz = () => {
           setShow={setShow}
           dataUpdateQuiz={dataUpdateQuiz}
           fectQuiz={fectQuiz}
+          resetUpdateDate={resetUpdateDate}
         />
 
         <MangageDeleteQuiz

@@ -29,6 +29,7 @@ const ManageUpdateQuiz = (props) => {
     setType({ value: "EASY", label: "EASY" });
     setImage(null);
     setPreviewImage("");
+    props.resetUpdateDate();
   };
 
   useEffect(() => {
@@ -63,6 +64,7 @@ const ManageUpdateQuiz = (props) => {
     if (res && res.EC === 0) {
       toast.success("Quiz updated successfully!");
       handleClose();
+      console.log(res.DT);
       await props.fectQuiz();
     } else {
       toast.error("Failed to update quiz.");
