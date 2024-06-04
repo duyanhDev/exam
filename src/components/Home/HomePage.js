@@ -3,7 +3,10 @@ import VideoHomePage from "../../assets/video-homepage.mp4";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 const HomePage = () => {
+  // useTranslation
+  const { t } = useTranslation();
   const [isColor, setColor] = useState(false);
 
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -25,16 +28,13 @@ const HomePage = () => {
       </video>
 
       <div className="homepage-content">
-        <div className="title-one">
+        <div className="title-one ">
           <h1 style={{ color: isColor ? "black" : "RGB(255, 182, 193)" }}>
-            Make forms worth filling out
+            {t("homepage.title1")}
           </h1>
         </div>
         <div className="title-tow">
-          <span>
-            Get more data—like signups, feedback, and anything else—with forms
-            designed to be refreshingly different.
-          </span>
+          <span>{t("homepage.title2")}</span>
           <div className="title-3">
             {isAuthenticated === false ? (
               <button onClick={() => navigate("/login")}>

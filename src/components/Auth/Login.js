@@ -8,6 +8,8 @@ import video from "../../assets/144742-785265007_large.mp4";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/useAction";
 import { ImSpinner10 } from "react-icons/im";
+import Langue from "../Header/Langue";
+import NavDropdown from "react-bootstrap/NavDropdown";
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,6 +58,12 @@ const Login = (props) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    console.log("key", e.key);
+    if (e && e.key && e.key === "Enter") {
+      handleLogin();
+    }
+  };
   return (
     <div className="login-container">
       <video width="500px" autoPlay muted loop>
@@ -65,7 +73,9 @@ const Login = (props) => {
         <div className="header">
           Don't have an account yet?{" "}
           <button onClick={() => navigate("/register")}>Sign Up</button>
+          <Langue />
         </div>
+
         <div className="title col-4 mx-auto">Duy Anh </div>
         <div className="welcome col-4 title mx-auto">Hello, who's this</div>
         <div className="content-form col-4 mx-auto">
@@ -85,6 +95,7 @@ const Login = (props) => {
               className="form-control password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => handleKeyDown(e)}
             />
             {showPassword ? (
               <div className={`eye-password`} onClick={handleShowPassword}>

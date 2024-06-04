@@ -5,6 +5,8 @@ import _ from "lodash";
 import "./DetailQuiz.scss";
 import Question from "./Question";
 import ModalResult from "./ModalResult";
+import RightContent from "./ContentQ/RightContent";
+import ShowAnswer from "./ShowAnswer";
 const DetailQuiz = (props) => {
   const params = useParams();
   const quizId = params.id;
@@ -21,6 +23,15 @@ const DetailQuiz = (props) => {
   // data Modal result
 
   const [dataModalResult, setDataModalResult] = useState("");
+
+  const [isChecKShowModal, setIsCheckModal] = useState(false);
+
+  const handleShowAnswer = () => {
+    const showAnswer = dataModalResult.quizData;
+    console.log(showAnswer);
+
+    setIsCheckModal(true);
+  };
 
   // mooxi laan quizID thay doi thi api thay doi
   useEffect(() => {
@@ -163,11 +174,21 @@ const DetailQuiz = (props) => {
           <img />
         </div>
         <div className="q-content">
-          <Question
-            index={index}
-            handleCheckbox={handleCheckbox}
-            data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
-          />
+          {isChecKShowModal ? (
+            <ShowAnswer
+              index={index}
+              handleCheckbox={handleCheckbox}
+              data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
+              dataModalResult={dataModalResult}
+            />
+          ) : (
+            <Question
+              index={index}
+              handleCheckbox={handleCheckbox}
+              data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
+              dataModalResult={dataModalResult}
+            />
+          )}
         </div>
         <div className="footer">
           <button className="btn btn-secondary" onClick={handlePrev}>
@@ -184,12 +205,20 @@ const DetailQuiz = (props) => {
           </button>
         </div>
       </div>
-      <div className="rigt-content">count down</div>
+      <div className="rigt-content">
+        <RightContent
+          dataQuiz={dataQuiz}
+          handleFinishQuiz={handleFinishQuiz}
+          setIndex={setIndex}
+        />
+      </div>
       <ModalResult
         show={isShowModalResult}
         setShow={setIsShowModalResult}
         dataModalResult={dataModalResult}
+        handleShowAnswer={handleShowAnswer}
       />
+      <ShowAnswer />
     </div>
   );
 };

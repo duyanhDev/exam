@@ -5,10 +5,12 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { doLogout } from "../../redux/action/useAction";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import "./Header.scss";
+import { logout } from "../../services/apiService";
+import { doLogout } from "../../redux/action/useAction";
+import Langue from "./Langue";
 
 function Header() {
   const navigate = useNavigate();
@@ -21,10 +23,16 @@ function Header() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const account = useSelector((state) => state.user.accout);
 
-  const handleLogout = () => {
-    toast.success("Logout thành công");
-    dispatch(doLogout());
-    navigate("/login");
+  const handleLogout = async () => {
+    let res = await logout(account.email, account.refresh_token);
+
+    if (res && res.EC === 0) {
+      dispatch(doLogout());
+      navigate("/login");
+      toast.success(res.EM);
+    } else {
+      toast.error(res.EM);
+    }
   };
   return (
     <div>
@@ -63,13 +71,13 @@ function Header() {
               ) : (
                 <>
                   <NavDropdown
-                    title={
-                      <img
-                        src={`data:image/jpeg;base64,${account.image}`}
-                        alt="Setting"
-                        className="nav-image"
-                      />
-                    }
+                    title="Setting"
+                    // <img
+                    //   src={`data:image/jpeg;base64,${account.image}`}
+                    //   alt="Setting"
+                    //   className="nav-image"
+                    // />
+
                     id="basic-nav-dropdown"
                   >
                     <div className="item-drop">
@@ -78,22 +86,30 @@ function Header() {
                           {account.username}
                         </button>
                       </NavDropdown.Item>
-                      <NavDropdown.Item>
-                        <button className="btn-user" onClick={handleLogout}>
-                          Đăng Xuất
-                        </button>
-                      </NavDropdown.Item>
-                      <NavDropdown.Divider />
                       <NavDropdown.Item
                         style={{ textAlign: "center" }}
                         href="#action/3.4"
+                        onClick={() =>
+                          navigate(`/profile/${account.username}`, {
+                            state: { account: account },
+                          })
+                        }
                       >
                         Profile
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+
+                      <NavDropdown.Item>
+                        <button className="btn-user" onClick={handleLogout}>
+                          Logout
+                        </button>
                       </NavDropdown.Item>
                     </div>
                   </NavDropdown>
                 </>
               )}
+
+              <Langue />
             </Nav>
           </Navbar.Collapse>
         </Container>

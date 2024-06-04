@@ -11,9 +11,8 @@ import Lightbox from "react-awesome-lightbox";
 
 import {
   getViewQuiz,
-  postCreateNewQuestionForQuiz,
-  postCreateNewAnswerForQuestion,
   getQuizWithQA,
+  postUpSetQA,
 } from "../../../../services/apiService";
 
 const QuizQA = (props) => {
@@ -85,10 +84,9 @@ const QuizQA = (props) => {
 
   const fectQuizWithQA = async () => {
     let res = await getQuizWithQA(selectedQuiz.value);
-    console.log(res);
 
     if (res && res.EC === 0) {
-      // convertbase 64
+      // convert base64
       let newQA = [];
       for (let i = 0; i < res.DT.qa.length; i++) {
         let q = res.DT.qa[i];
@@ -102,7 +100,7 @@ const QuizQA = (props) => {
         }
         newQA.push(q);
       }
-      console.log("check qa", newQA);
+
       setQuesttion(newQA);
     }
   };
@@ -251,25 +249,32 @@ const QuizQA = (props) => {
       return;
     }
 
-    for (const question of questions) {
-      const q = await postCreateNewQuestionForQuiz(
-        +selectedQuiz.value,
-        question.description,
-        question.imageFile
-      );
+    let questionClone = _.cloneDeep(questions);
 
-      //sumbit answer
-      for (const answer of question.answers) {
-        await postCreateNewAnswerForQuestion(
-          answer.description,
-          answer.isCorrect,
-          q.DT.id
-        );
+    for (let i = 0; i < questionClone.length; i++) {
+      if (questionClone[i].imageFile) {
+        questionClone[i].imageFile = await toBase64(questionClone[i].imageFile);
       }
     }
-    toast.success("Create question and answer  succcced!");
-    setQuesttion(inittQuestion);
+
+    let res = await postUpSetQA({
+      quizId: selectedQuiz.value,
+      questions: questionClone,
+    });
+
+    if (res && res.EC === 0) {
+      toast.success(res.EM);
+      fectQuizWithQA();
+    }
   };
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
 
   const handlePreviewImage = (questionsId) => {
     let questionClone = _.cloneDeep(questions);

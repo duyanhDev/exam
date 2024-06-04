@@ -51,6 +51,7 @@ const ManageUsers = (props) => {
   //   }
   // };
 
+  // phân trang
   const fetchListUsersWithPaginate = async (page) => {
     let res = await getUserWithPaginate(page, LIMIT_USER);
     if (res.EC === 0) {

@@ -15,12 +15,6 @@ import {
   postCreateNewAnswerForQuestion,
 } from "../../../../services/apiService";
 
-// const options = [
-//   { value: "chocolate", label: "Chocolate" },
-//   { value: "strawberry", label: "Strawberry" },
-//   { value: "vanilla", label: "Vanilla" },
-// ];
-
 const Questions = (props) => {
   const [selectedQuiz, setSelectedQuiz] = useState({});
   const [isVaidQuestion, setiSValidQuestion] = useState(false);

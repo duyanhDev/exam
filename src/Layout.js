@@ -13,6 +13,9 @@ import LisQuiz from "./components/User/ListQuiz";
 import DetailQuiz from "./components/User/DetailQuiz";
 import ManageQuiz from "./components/Admin/Content/Quiz/ManageQuiz";
 import Questions from "./components/Admin/Content/Question/Questions";
+import PrivateRouter from "./routers/PrivateRoute";
+import React, { Suspense } from "react";
+import Profile from "./components/User/Profile/Profile";
 
 const NotFound = () => {
   return (
@@ -24,14 +27,29 @@ const NotFound = () => {
 
 const Layout = (props) => {
   return (
-    <>
+    <Suspense fallback={<div>loading...</div>}>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomPage />} />
-          <Route path="/users" element={<LisQuiz />} />
+          <Route
+            path="/users"
+            element={
+              <PrivateRouter>
+                <LisQuiz />
+              </PrivateRouter>
+            }
+          />
         </Route>
         <Route path="quiz/:id" element={<DetailQuiz />} />
-        <Route path="/admins" element={<Admin />}>
+
+        <Route
+          path="/admins"
+          element={
+            <PrivateRouter>
+              <Admin />
+            </PrivateRouter>
+          }
+        >
           <Route index element={<DashBoar />} />
           <Route path="manage-users" element={<ManageUsers />} />
           <Route path="manage-quizzes" element={<ManageQuiz />} />
@@ -39,7 +57,8 @@ const Layout = (props) => {
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
-
+        <Route path="/test" element={<PrivateRouter />}></Route>
+        <Route path="/profile/:user" element={<Profile />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer
@@ -57,7 +76,7 @@ const Layout = (props) => {
       />
       {/* Same as */}
       <ToastContainer />
-    </>
+    </Suspense>
   );
 };
 

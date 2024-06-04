@@ -1,0 +1,106 @@
+.card {
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  max-width: 500px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  margin: 1rem;
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 70px;
+  gap: 20px;
+  &::before {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    top: -0.7rem;
+    left: -0.7rem;
+  }
+  &::after {
+    height: 15rem;
+    width: 15rem;
+    background-color: #4172f5aa;
+    top: -8rem;
+    right: -8rem;
+    box-shadow: 2rem 6rem 0 -3rem #fff;
+  }
+  img {
+    width: 8rem;
+    min-width: 80px;
+    box-shadow: 0 0 0 5px #fff;
+  }
+}
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+.infos {
+  margin-left: 1.5rem;
+  margin-left: 0;
+  margin-top: 1.5rem;
+}
+.name {
+  margin-bottom: 1rem;
+  h2 {
+    font-size: 1.3rem;
+  }
+  h4 {
+    font-size: 0.8rem;
+    color: #333;
+  }
+}
+.text {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.stats {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  li {
+    min-width: 5rem;
+    h3 {
+      font-size: 0.99rem;
+    }
+    h4 {
+      font-size: 0.75rem;
+    }
+  }
+}
+.links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+
+  button {
+    font-family: "Poppins", sans-serif;
+    min-width: 120px;
+    padding: 0.5rem;
+    border: 1px solid #222;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s linear;
+    min-width: 100px;
+  }
+}
+.links .follow,
+.links .view:hover {
+  background-color: #222;
+  color: #fff;
+}
+.links .view,
+.links .follow:hover {
+  background-color: transparent;
+  color: #222;
+}

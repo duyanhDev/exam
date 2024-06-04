@@ -2,7 +2,7 @@ import _ from "lodash";
 import { useState } from "react";
 
 import Lightbox from "react-awesome-lightbox";
-const Question = (props) => {
+const ShowAnswer = (props) => {
   const { data, index, dataModalResult } = props;
   console.log("fix checkss", dataModalResult);
   const [isPreviewImage, setiSPreviewImage] = useState(false);
@@ -16,6 +16,7 @@ const Question = (props) => {
   };
   return (
     <>
+      <h1>Duy Anh</h1>
       {data.image && (
         <div className="q-image">
           <img
@@ -67,4 +68,4 @@ const Question = (props) => {
   );
 };
 
-export default Question;
+export default ShowAnswer;

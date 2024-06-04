@@ -5,12 +5,11 @@ import { toast } from "react-toastify";
 
 function ModalResult(props) {
   const { show, setShow, dataModalResult } = props;
-  console.log("check data dataModalResult", dataModalResult);
 
   const handleClose = () => {
     setShow(false);
   };
-
+  const handleShowAnswer = () => {};
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -26,7 +25,7 @@ function ModalResult(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={props.handleShowAnswer()}>
             Show answers
           </Button>
           <Button variant="primary" onClick={handleClose}>

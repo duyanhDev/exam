@@ -40,6 +40,13 @@ const postLoginUser = (email, password) => {
     delay: 5000,
   });
 };
+
+// logout
+
+const logout = (email, refresh_token) => {
+  return axios.post("api/v1/logout", { email, refresh_token });
+};
+
 const postResigister = (email, username, password) => {
   return axios.post("http://localhost:8081/api/v1/register", {
     email: email,
@@ -128,6 +135,12 @@ const postAssingQuiz = (quizId, userId) => {
 const getQuizWithQA = (quizId) => {
   return axios.get(`api/v1/quiz-with-qa/${quizId}`);
 };
+
+// update QA
+
+const postUpSetQA = (data) => {
+  return axios.post(`api/v1/quiz-upsert-qa`, { ...data });
+};
 export {
   postCreateNewUser,
   getAllUsers,
@@ -147,4 +160,6 @@ export {
   postCreateNewAnswerForQuestion,
   postAssingQuiz,
   getQuizWithQA,
+  postUpSetQA,
+  logout,
 };

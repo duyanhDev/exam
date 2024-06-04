@@ -26,6 +26,10 @@
     right: 30px;
     top: 10px;
     color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
   }
 
   .title {

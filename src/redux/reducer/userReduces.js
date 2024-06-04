@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   accout: {
     access_token: "",
     refresh_token: "",
+    email: "",
     username: "",
     image: "",
     role: "",
@@ -23,26 +24,27 @@ const userReducer = (state = INITIAL_STATE, action) => {
         accout: {
           access_token: action?.payload?.DT?.access_token,
           refresh_token: action?.payload?.DT?.refresh_token,
+          email: action?.payload?.DT?.email,
           username: action?.payload?.DT?.username,
           image: action?.payload?.DT?.image,
           role: action?.payload?.DT?.role,
         },
         isAuthenticated: true,
       };
-
     case FETCH_USER_LOGOUT_SUCCESS:
+      console.log("check action", action);
       return {
         ...state,
         accout: {
           access_token: "",
           refresh_token: "",
+          email: "",
           username: "",
           image: "",
           role: "",
         },
         isAuthenticated: false,
       };
-
     default:
       return state;
   }
