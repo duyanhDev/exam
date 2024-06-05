@@ -3,7 +3,18 @@
             "title1":"If you are not willing to learn, no one can help you. If you are determined to learn, no one can stop you",
             "title2": "You learn something everyday if you pay attention.",
             "title3": {
-              "login": "Get started—it's free"
+              "login": "Please log in",
+              "start":"Start doing homework"
             }
-          }  
+           
+          },
+          "menu":{
+            "home":"Home",
+            "User":"User",
+            "Admin":"Admin",
+            "profile":"Profile",
+            "Logout":"Logout"
+            
+          }
+
 }

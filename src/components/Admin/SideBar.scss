@@ -7,13 +7,14 @@
     background: no-repeat;
   }
   .css-12w9als {
-    color: cadetblue;
+    color: #fff;
     font-weight: 500;
   }
 
   .nav-sidebar {
-    background-image: url("../../assets/bg2.jpg");
-    background-size: cover;
+    // background-image: url("../../assets/bg2.jpg");
+    // background-size: cover;\
+    background-color: black;
   }
 
   .name-title {
@@ -42,7 +43,18 @@
     }
   }
   .link-to {
-    color: cadetblue;
+    color: #fff;
     text-decoration: none;
+  }
+  .css-1tqrhto > .ps-menu-button:hover {
+    /* background-color: #f3f3f3; */
+    background-color: pink;
+  }
+  .css-1t8x7v1 > .ps-menu-button:hover {
+    /* background-color: #f3f3f3; */
+    background-color: pink;
+  }
+  .css-16jesut > .ps-menu-button:hover {
+    background-color: pink;
   }
 }

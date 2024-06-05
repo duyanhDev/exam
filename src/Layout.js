@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import App from "./App";
-import User from "./components/User/User";
 import Admin from "./components/Admin/Admin";
 import HomPage from "./components/Home/HomePage";
 import DashBoar from "./components/Admin/Content/DashBoar";
@@ -15,7 +14,7 @@ import ManageQuiz from "./components/Admin/Content/Quiz/ManageQuiz";
 import Questions from "./components/Admin/Content/Question/Questions";
 import PrivateRouter from "./routers/PrivateRoute";
 import React, { Suspense } from "react";
-import Profile from "./components/User/Profile/Profile";
+import { useSelector } from "react-redux";
 
 const NotFound = () => {
   return (
@@ -26,6 +25,8 @@ const NotFound = () => {
 };
 
 const Layout = (props) => {
+  const account = useSelector((state) => state.user.accout);
+
   return (
     <Suspense fallback={<div>loading...</div>}>
       <Routes>
@@ -42,23 +43,26 @@ const Layout = (props) => {
         </Route>
         <Route path="quiz/:id" element={<DetailQuiz />} />
 
-        <Route
-          path="/admins"
-          element={
-            <PrivateRouter>
-              <Admin />
-            </PrivateRouter>
-          }
-        >
-          <Route index element={<DashBoar />} />
-          <Route path="manage-users" element={<ManageUsers />} />
-          <Route path="manage-quizzes" element={<ManageQuiz />} />
-          <Route path="manage-questions" element={<Questions />} />
-        </Route>
+        {account && account.role === "ADMIN" && (
+          <Route
+            path="/admins"
+            element={
+              <PrivateRouter>
+                <Admin />
+              </PrivateRouter>
+            }
+          >
+            <Route index element={<DashBoar />} />
+            <Route path="manage-users" element={<ManageUsers />} />
+            <Route path="manage-quizzes" element={<ManageQuiz />} />
+            <Route path="manage-questions" element={<Questions />} />
+          </Route>
+        )}
+
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/test" element={<PrivateRouter />}></Route>
-        <Route path="/profile/:user" element={<Profile />}></Route>
+        {/* <Route path="/profile/:user" element={<Profile />}></Route> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer
@@ -73,6 +77,7 @@ const Layout = (props) => {
         pauseOnHover
         theme="light"
         transition={Bounce}
+        containerId="containerA"
       />
       {/* Same as */}
       <ToastContainer />

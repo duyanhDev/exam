@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { FaPlus } from "react-icons/fa";
 import { pushDataUser } from "../../../services/apiService";
 import { toast } from "react-toastify";
-import _, { isEmpty } from "lodash";
+import { isEmpty } from "lodash";
 
 const ModelUpdateUser = (props) => {
   // đóng mở

@@ -141,6 +141,34 @@ const getQuizWithQA = (quizId) => {
 const postUpSetQA = (data) => {
   return axios.post(`api/v1/quiz-upsert-qa`, { ...data });
 };
+
+// api chart
+
+const getOverview = () => {
+  return axios.get("api/v1/overview");
+};
+
+// update profile
+
+const postUpdateProfile = (username, image) => {
+  const data = new FormData();
+  data.append("username", username);
+  data.append("userImage", image);
+  return axios.post("api/v1/profile", data);
+};
+// update mat khau
+
+const postUpdatePassword = (password, newPassword) => {
+  return axios.post(`api/v1/change-password`, {
+    current_password: password,
+    new_password: newPassword,
+  });
+};
+
+const getHistory = () => {
+  return axios.get(`/api/v1/history`);
+};
+
 export {
   postCreateNewUser,
   getAllUsers,
@@ -162,4 +190,8 @@ export {
   getQuizWithQA,
   postUpSetQA,
   logout,
+  getOverview,
+  postUpdateProfile,
+  postUpdatePassword,
+  getHistory,
 };

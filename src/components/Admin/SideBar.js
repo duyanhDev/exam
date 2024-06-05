@@ -18,7 +18,7 @@ const SideBar = (props) => {
         <Menu>
           <div className="name-title">
             <Link to={"/"} className="link-title">
-              Duy Anh
+              F8
             </Link>
           </div>
           <MenuItem>

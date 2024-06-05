@@ -2,6 +2,7 @@
   display: flex;
   gap: 20px;
   padding: 50px;
+  margin-top: -40px;
   .left-content {
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -83,5 +84,21 @@
         }
       }
     }
+  }
+  .correct {
+    color: green;
+    font-size: 25px;
+  }
+  .incorrect {
+    color: red;
+    font-size: 25px;
+  }
+}
+
+.quiz-detail-new-header {
+  padding: 25px 70px;
+
+  a {
+    text-decoration: none !important;
   }
 }

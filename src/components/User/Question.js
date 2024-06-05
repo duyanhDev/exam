@@ -1,63 +1,81 @@
 import _ from "lodash";
 import { useState } from "react";
-
 import Lightbox from "react-awesome-lightbox";
+import { useTranslation } from "react-i18next";
+import { IoIosClose, IoIosCheckmark } from "react-icons/io";
+
 const Question = (props) => {
-  const { data, index, dataModalResult } = props;
-  console.log("fix checkss", dataModalResult);
-  const [isPreviewImage, setiSPreviewImage] = useState(false);
+  const { t } = useTranslation();
+  const { data, index, isShowAnswer } = props;
+  const [isPreviewImage, setIsPreviewImage] = useState(false);
+
   if (_.isEmpty(data)) {
     return <></>;
   }
 
-  const handleHanleCheckbox = (e, aId, qID) => {
-    // console.log("check ,", e.target.checked);
-    props.handleCheckbox(aId, qID);
+  const handleHanleCheckbox = (event, aId, qId) => {
+    // console.log('check: ', event.target.checked)
+    props.handleCheckbox(aId, qId);
   };
+
   return (
     <>
-      {data.image && (
+      {data.image ? (
         <div className="q-image">
           <img
+            style={{ cursor: "pointer" }}
+            onClick={() => setIsPreviewImage(true)}
             src={`data:image/jpeg;base64,${data.image}`}
-            onClick={() => setiSPreviewImage(true)}
-            alt="ảnh lỗi"
           />
-          {isPreviewImage && (
+          {isPreviewImage === true && (
             <Lightbox
-              className="img_ligtbox"
               image={`data:image/jpeg;base64,${data.image}`}
               title={"Question Image"}
-              onClose={() => setiSPreviewImage(false)}
+              onClose={() => setIsPreviewImage(false)}
             ></Lightbox>
           )}
         </div>
+      ) : (
+        <div className="q-image"></div>
       )}
       <div className="question">
-        Question {index + 1} : {data.questionDescription}?
+        {/* {t("quiz.question")} */}
+        question {index + 1}: {data.questionDescription} ?
       </div>
       <div className="answer">
         {data.answers &&
           data.answers.length &&
-          data.answers.map((a, index) => {
+          data.answers.map((a, i) => {
             return (
-              <div key={`answer-${index}`} className="a-child">
+              <div key={`answer-${i}`} className="a-child">
                 <div className="form-check">
                   <input
-                    class="form-check-input"
+                    id={`checkbox-${i}-${index}`}
+                    className="form-check-input"
                     type="checkbox"
                     checked={a.isSelected}
-                    id="flexCheckDefault"
-                    onChange={(e) =>
-                      handleHanleCheckbox(e, a.id, data.questionId)
+                    disabled={props.isSubmitQuiz}
+                    onChange={(event) =>
+                      handleHanleCheckbox(event, a.id, data.questionId)
                     }
                   />
                   <label
                     className="form-check-label"
-                    htmlFor="flexCheckDefault"
+                    htmlFor={`checkbox-${i}-${index}`}
                   >
                     {a.description}
                   </label>
+                  {isShowAnswer === true && (
+                    <>
+                      {a.isSelected === true && a.isCorrect === false && (
+                        <IoIosClose className="incorrect" />
+                      )}
+
+                      {a.isCorrect === true && (
+                        <IoIosCheckmark className="correct" />
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             );

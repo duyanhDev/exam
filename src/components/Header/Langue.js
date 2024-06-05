@@ -4,15 +4,13 @@ import { useTranslation, Trans } from "react-i18next";
 const Langue = (props) => {
   const { t, i18n } = useTranslation();
 
-  const [isLanguage, setLanguage] = useState(false);
   const handleChangeLanguage = (language) => {
     i18n.changeLanguage(language);
-    setLanguage(!isLanguage);
   };
   return (
     <>
       <NavDropdown
-        title={isLanguage ? "English" : "Việt Nam"}
+        title={i18n.language === "vi" ? "Việt Nam" : "English"}
         id="basic-nav-dropdown2"
         className="languages"
       >

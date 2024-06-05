@@ -38,10 +38,12 @@ const HomePage = () => {
           <div className="title-3">
             {isAuthenticated === false ? (
               <button onClick={() => navigate("/login")}>
-                Get started—it's free
+                {t("homepage.title3.login")}
               </button>
             ) : (
-              <button onClick={() => navigate("/users")}>Doing Quiz Now</button>
+              <button onClick={() => navigate("/users")}>
+                {t("homepage.title3.start")}
+              </button>
             )}
           </div>
         </div>

@@ -5,15 +5,19 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import "./Header.scss";
 import { logout } from "../../services/apiService";
 import { doLogout } from "../../redux/action/useAction";
 import Langue from "./Langue";
-
+import Profile from "../User/Profile/Profile";
+import { useState } from "react";
+import { useTranslation, Trans } from "react-i18next";
 function Header() {
   const navigate = useNavigate();
+  // useTranslation
+  const { t } = useTranslation();
+  const [isCheckProfile, setIsCheckProfile] = useState(false);
 
   const handleLogin = () => {
     navigate("/login");
@@ -35,23 +39,26 @@ function Header() {
     }
   };
   return (
-    <div>
+    <>
       <Navbar expand="lg" className="bg-body-tertiary nav">
         <Container>
           <Link to="/" className="navbar-brand">
-            IELTS Online Tests
+            <img
+              className="img_f8"
+              src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
+            ></img>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Link to="/" className="nav-link ">
-                Home
+                {t("menu.home")}
               </Link>
               <Link to="/users" className="nav-link ">
-                Users
+                {t("menu.User")}
               </Link>
               <Link to="/admins" className="nav-link  ">
-                Admin
+                {account.role === "ADMIN" ? t("menu.Admin") : ""}
               </Link>
             </Nav>
 
@@ -71,13 +78,14 @@ function Header() {
               ) : (
                 <>
                   <NavDropdown
-                    title="Setting"
-                    // <img
-                    //   src={`data:image/jpeg;base64,${account.image}`}
-                    //   alt="Setting"
-                    //   className="nav-image"
-                    // />
-
+                    // title="Setting"
+                    title={
+                      <img
+                        src={`data:image/jpeg;base64,${account.image}`}
+                        alt="Setting"
+                        className="nav-image"
+                      />
+                    }
                     id="basic-nav-dropdown"
                   >
                     <div className="item-drop">
@@ -88,20 +96,15 @@ function Header() {
                       </NavDropdown.Item>
                       <NavDropdown.Item
                         style={{ textAlign: "center" }}
-                        href="#action/3.4"
-                        onClick={() =>
-                          navigate(`/profile/${account.username}`, {
-                            state: { account: account },
-                          })
-                        }
+                        onClick={() => setIsCheckProfile(true)}
                       >
-                        Profile
+                        {t("menu.profile")}
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
 
                       <NavDropdown.Item>
                         <button className="btn-user" onClick={handleLogout}>
-                          Logout
+                          {t("menu.Logout")}
                         </button>
                       </NavDropdown.Item>
                     </div>
@@ -114,7 +117,9 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </div>
+
+      <Profile isCheckProfile={isCheckProfile} setShow={setIsCheckProfile} />
+    </>
   );
 }
 

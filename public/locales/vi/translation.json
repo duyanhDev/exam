@@ -3,8 +3,16 @@
           "title1": " Nếu bạn không chịu học, không một ai có thể giúp bạn. Nhưng nếu bạn quyết tâm học, không một ai có thể ngăn cản bạn.",
           "title2":" Chính những gì chúng ta nghĩ mình đã biết kéo chúng ta ra khỏi việc học",
           "title3":{
-            "login":"Bắt đầu—miễn phí"
+            "login":"Vui lòng đăng nhập",
+            "start":"Bắt đầu làm bài"
           }
+    },
+    "menu":{
+      "home":"Trang chủ",
+      "User":"Người dùng",
+      "Admin":"Quản trị viên",
+      "profile":"Trang Cá Nhân",
+       "Logout":"Đăng xuất"
     }
     
       
