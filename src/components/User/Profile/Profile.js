@@ -5,10 +5,10 @@ import Modal from "react-bootstrap/Modal";
 import UpdateUser from "./UpdateUser";
 import ChangePassword from "./ChangePassword";
 import HistoryUser from "./HistoryUser";
-
+import { useTranslation, Trans } from "react-i18next";
 const Profile = (props) => {
   const handleClose = () => props.setShow(false);
-
+  const { t } = useTranslation();
   return (
     <div className="profile-user">
       <Modal
@@ -18,17 +18,17 @@ const Profile = (props) => {
         className="custom-modal"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Manage Personal Page</Modal.Title>
+          <Modal.Title>{t("Profile.Home")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Tabs id="controlled-tab-example" className="mb-3">
-            <Tab eventKey="home" title="User Infomation">
+            <Tab eventKey="home" title={t("Profile.User")}>
               <UpdateUser />
             </Tab>
-            <Tab eventKey="profile" title="Change Password">
+            <Tab eventKey="profile" title={t("Profile.Password")}>
               <ChangePassword />
             </Tab>
-            <Tab eventKey="contact" title="Contact">
+            <Tab eventKey="contact" title={t("Profile.History")}>
               <HistoryUser />
             </Tab>
           </Tabs>

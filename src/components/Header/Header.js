@@ -90,7 +90,11 @@ function Header() {
                   >
                     <div className="item-drop">
                       <NavDropdown.Item>
-                        <button className="btn-user" onClick={handleLogin}>
+                        <button
+                          className="btn-user"
+                          onClick={handleLogin}
+                          disabled
+                        >
                           {account.username}
                         </button>
                       </NavDropdown.Item>

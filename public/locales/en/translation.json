@@ -15,6 +15,16 @@
             "profile":"Profile",
             "Logout":"Logout"
             
+          },
+          "Profile":{
+            "Home":"Manage Personal Page",
+            "User":"User Infomation",
+            "Password":"Change Password",
+            "History":"History",
+            "CurrentPassword":"Current Password",
+            "NewPassword":"New Password",
+            "ConfirmPassword":"Confirm Password"
+             
           }
 
 }

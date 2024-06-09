@@ -7,21 +7,30 @@ const ModalResult = (props) => {
   const { show, setShow, dataModalResult, handleShowAnswer } = props;
   const handleClose = () => setShow(false);
   const { t } = useTranslation();
+  const point = 10 / Number(dataModalResult.countTotal);
+  const result = point * Number(dataModalResult.countCorrect);
 
   return (
     <>
       <Modal show={show} onHide={handleClose} backdrop="static">
         <Modal.Header closeButton>
-          <Modal.Title>{t("quiz.result")}</Modal.Title>
+          <Modal.Title>KẾT QUẢ BÀI LÀM</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
             {/* {t("quiz.total-question")}: */}
-            <b>countTotal: {dataModalResult.countTotal} </b>
+            <b>Count Total: {dataModalResult.countTotal} </b>
           </div>
           <div>
             {/* {t("quiz.total-correct")}: */}
-            <b> countCorrect: {dataModalResult.countCorrect} </b>
+            <b>Count Correct: {dataModalResult.countCorrect} </b>
+          </div>
+          <div>
+            {/* {t("quiz.total-correct")}: */}
+
+            <b>
+              Points: {Number.isInteger(result) ? result : result.toFixed(2)}
+            </b>
           </div>
         </Modal.Body>
         <Modal.Footer>

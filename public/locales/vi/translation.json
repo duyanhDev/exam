@@ -13,7 +13,15 @@
       "Admin":"Quản trị viên",
       "profile":"Trang Cá Nhân",
        "Logout":"Đăng xuất"
+    },
+    "Profile":{
+      "Home":"Quản lý trang cá nhân",
+      "User":"Thông tin người dùng",
+      "Password":"Đổi mật khẩu",
+      "History":"Lịch Sử",
+      "CurrentPassword":"Mật khẩu hiện tại",
+      "NewPassword":"Mật khẩu mới",
+      "ConfirmPassword":"Nhập lại mật khẩu mới"
     }
-    
       
 }

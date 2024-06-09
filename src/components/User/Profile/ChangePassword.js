@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { postUpdatePassword } from "../../../services/apiService";
 import { toast } from "react-toastify";
+import { useTranslation, Trans } from "react-i18next";
 const ChangePassword = () => {
+  const { t } = useTranslation();
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [ChangePassword, setChangePassword] = useState("");
@@ -17,7 +19,7 @@ const ChangePassword = () => {
   return (
     <div className="container-password">
       <div className="form-group">
-        <label className="form-label">Current Password</label>
+        <label className="form-label">{t("Profile.CurrentPassword")}</label>
         <input
           type="password"
           className="form-control"
@@ -26,7 +28,7 @@ const ChangePassword = () => {
         />
       </div>
       <div className="form-group">
-        <label className="form-label">New Password</label>
+        <label className="form-label">{t("Profile.NewPassword")}</label>
         <input
           type="password"
           className="form-control"
@@ -35,7 +37,7 @@ const ChangePassword = () => {
         />
       </div>
       <div className="form-group">
-        <label className="form-label">Confirm Password</label>
+        <label className="form-label">{t("Profile.ConfirmPassword")}</label>
         <input
           type="password"
           className="form-control"
