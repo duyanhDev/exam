@@ -11,10 +11,16 @@ import { doLogout } from "../../redux/action/useAction";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { logout } from "../../services/apiService";
+import { useTranslation, Trans } from "react-i18next";
+import Profile from "../User/Profile/Profile";
 const Admin = (props) => {
   const [collapsed, setcollapsed] = useState(false);
+  const [isCheckProfile, setIsCheckProfile] = useState(false);
   const account = useSelector((state) => state.user.accout);
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const handleDologout = async () => {
     let res = await logout(account.email, account.refresh_token);
@@ -50,18 +56,12 @@ const Admin = (props) => {
               //   })
               // }
             >
-              <NavDropdown.Item
-                onClick={() =>
-                  navigate(`/profile/${account.username}`, {
-                    state: { account: account },
-                  })
-                }
-              >
-                Profile
+              <NavDropdown.Item onClick={() => setIsCheckProfile(true)}>
+                {t("admin.Profile")}
               </NavDropdown.Item>
-              <NavDropdown.Item
-                onClick={() => handleDologout()}
-              ></NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleDologout()}>
+                {t("admin.Logout")}
+              </NavDropdown.Item>
             </NavDropdown>
           </div>
         </div>
@@ -70,6 +70,7 @@ const Admin = (props) => {
             <Outlet />
           </PerfectScrollbar>
         </div>
+        <Profile isCheckProfile={isCheckProfile} setShow={setIsCheckProfile} />
       </div>
     </div>
   );

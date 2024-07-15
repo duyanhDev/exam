@@ -22,6 +22,33 @@
       "CurrentPassword":"Mật khẩu hiện tại",
       "NewPassword":"Mật khẩu mới",
       "ConfirmPassword":"Nhập lại mật khẩu mới"
+    },
+
+    "admin":{
+      "Profile":"Trang cá nhân",
+      "Logout":"Đăng xuất",
+      "boar":{
+          "totalUser":"Tổng Tài Khoản",
+          "totalQuiz":"Tổng số chủ đề",
+          "totalQuestion":"Tổng số câu hỏi",
+          "totalAn":"Tổng số đáp án"
+
+      }
+    },
+    "login":{
+      "title":"Xin chào mọi người",
+      "forgetpass":"Quên mật khẩu",
+      "login1":"Đăng Nhập",
+      "back":"Quay trở lại",
+      "yet":"Bạn đã có tài khoản chưa ?",
+      "single":"Đăng ký"
+    },
+    "dash":{
+      "setting":"Tính Năng",
+      "user":"Quản lí User",
+       "quiz": "Quản Lí Bài Quiz",
+       "ans":"Quản Lí Câu Hỏi"
+       
     }
       
 }

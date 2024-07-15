@@ -2,23 +2,22 @@ import "./DashBoar.scss";
 import {
   ResponsiveContainer,
   BarChart,
-  CartesianGrid,
   XAxis,
   Tooltip,
-  YAxis,
   Legend,
   Bar,
 } from "recharts";
 
 import { getOverview } from "../../../services/apiService";
 import { useEffect, useState } from "react";
+import { useTranslation, Trans } from "react-i18next";
 const DashBoar = (props) => {
   const [dataOverView, setDataOverView] = useState([]);
   const [dataChart, setDaTaChart] = useState([]);
   useEffect(() => {
     fetchDataOverview();
   }, []);
-
+  const { t } = useTranslation();
   const fetchDataOverview = async () => {
     let res = await getOverview();
     if (res && res.EC === 0) {
@@ -55,7 +54,7 @@ const DashBoar = (props) => {
       <div className="content">
         <div className="c-left">
           <div className="chart">
-            <span className="chart-1">Total User</span>
+            <span className="chart-1">{t("admin.boar.totalUser")}</span>
             <span className="chart-2">
               {dataOverView && dataOverView.users && dataOverView.users.total
                 ? dataOverView.users.total
@@ -63,7 +62,7 @@ const DashBoar = (props) => {
             </span>
           </div>
           <div className="chart">
-            <span className="chart-1">Total Quiz</span>
+            <span className="chart-1">{t("admin.boar.totalQuiz")}</span>
             <span className="chart-2">
               {dataOverView &&
               dataOverView.others &&
@@ -72,8 +71,9 @@ const DashBoar = (props) => {
                 : 0}
             </span>
           </div>
+
           <div className="chart">
-            <span className="chart-1">Total Questions</span>
+            <span className="chart-1">{t("admin.boar.totalQuestion")}</span>
             <span className="chart-2">
               {dataOverView &&
               dataOverView.others &&
@@ -83,7 +83,7 @@ const DashBoar = (props) => {
             </span>
           </div>
           <div className="chart">
-            <span className="chart-1">Total Answers </span>
+            <span className="chart-1">{t("admin.boar.totalAn")}</span>
             <span className="chart-2">
               {dataOverView &&
               dataOverView.others &&

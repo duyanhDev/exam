@@ -13,6 +13,7 @@ import Langue from "./Langue";
 import Profile from "../User/Profile/Profile";
 import { useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
+import f8 from "../../assets/f8-icon-lV2rGpF0.png";
 function Header() {
   const navigate = useNavigate();
   // useTranslation
@@ -43,10 +44,7 @@ function Header() {
       <Navbar expand="lg" className="bg-body-tertiary nav">
         <Container>
           <Link to="/" className="navbar-brand">
-            <img
-              className="img_f8"
-              src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
-            ></img>
+            <img className="img_f8" src={f8}></img>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

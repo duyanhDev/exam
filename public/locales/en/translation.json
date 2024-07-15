@@ -25,6 +25,32 @@
             "NewPassword":"New Password",
             "ConfirmPassword":"Confirm Password"
              
+          },
+          "admin":{
+            "Profile":"Profile",
+            "Logout":"Logout",
+            "boar":{
+              "totalUser":"Total User",
+              "totalQuiz":"Total Quiz",
+              "totalQuestion":"Total Questions",
+              "totalAn":"Total Answers"
+    
+          }
+          },
+          "login":{
+            "title":"Hi everybody",
+            "forgetpass":"Forget Password",
+            "login1":"Login",
+            "back":"Go back",
+            "yet":"Don't have an account yet?",
+             "single":"Sign up"
+          },
+          "dash":{
+            "setting":"Feature",
+            "user":"User Management",
+             "quiz": "Quiz Management",
+             "ans":"Question Management"
+             
           }
 
 }

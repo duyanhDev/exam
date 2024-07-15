@@ -160,6 +160,7 @@ const DetailQuiz = (props) => {
     setIsShowAnswer(true);
   };
 
+  console.log(quizId);
   return (
     <>
       <Breadcrumb className="quiz-detail-new-header">

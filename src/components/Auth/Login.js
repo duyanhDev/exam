@@ -10,7 +10,9 @@ import { doLogin } from "../../redux/action/useAction";
 import { ImSpinner10 } from "react-icons/im";
 import Langue from "../Header/Langue";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useTranslation, Trans } from "react-i18next";
 const Login = (props) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
@@ -71,13 +73,15 @@ const Login = (props) => {
       </video>
       <div className="container-main">
         <div className="header">
-          Don't have an account yet?{" "}
-          <button onClick={() => navigate("/register")}>Sign Up</button>
+          {t("login.yet")}
+          <button onClick={() => navigate("/register")}>
+            {t("login.single")}
+          </button>
           <Langue />
         </div>
 
         <div className="title col-4 mx-auto">Duy Anh </div>
-        <div className="welcome col-4 title mx-auto">Hello, who's this</div>
+        <div className="welcome col-4 title mx-auto"> {t("login.title")}</div>
         <div className="content-form col-4 mx-auto">
           <div className="form-group">
             <label>Email</label>
@@ -107,7 +111,7 @@ const Login = (props) => {
               </div>
             )}
           </div>
-          <span className="forgot-password">Forgot password</span>
+          <span className="forgot-password">{t("login.forgetpass")}</span>
           <div>
             <button
               className="btn-submit"
@@ -115,12 +119,12 @@ const Login = (props) => {
               disabled={isLoading}
             >
               {isLoading === true && <ImSpinner10 className="loader-icon" />}
-              <span> Login</span>
+              <span>{t("login.login1")}</span>
             </button>
           </div>
 
           <span style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
-            Go back
+            {t("login.back")}
           </span>
         </div>
       </div>

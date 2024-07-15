@@ -1,60 +1,52 @@
 .Sidebar {
-  .css-dip3t8 {
-    position: relative;
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: no-repeat;
-  }
-  .css-12w9als {
-    color: #fff;
-    font-weight: 500;
-  }
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+}
 
-  .nav-sidebar {
-    // background-image: url("../../assets/bg2.jpg");
-    // background-size: cover;\
-    background-color: black;
-  }
+.nav-sidebar {
+  background-color: #000; /* Black background */
+}
 
-  .name-title {
-    height: 35px;
-    min-height: 35px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    border-radius: 8px;
-    color: white;
-    font-size: 24px;
-    font-weight: 700;
-    // background: linear-gradient(
-    //   45deg,
-    //   rgb(21, 87, 205) 0%,
-    //   rgb(90, 225, 255) 100%
-    // );
-    margin-top: 15px;
-    .link-title {
-      color: #fff;
-      font-size: 2.5rem;
-      font-weight: 500;
-      text-decoration: none;
-    }
-  }
-  .link-to {
-    color: #fff;
-    text-decoration: none;
-  }
-  .css-1tqrhto > .ps-menu-button:hover {
-    /* background-color: #f3f3f3; */
-    background-color: pink;
-  }
-  .css-1t8x7v1 > .ps-menu-button:hover {
-    /* background-color: #f3f3f3; */
-    background-color: pink;
-  }
-  .css-16jesut > .ps-menu-button:hover {
-    background-color: pink;
-  }
+.name-title {
+  height: 35px;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.name-title .link-title {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link-to {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Hover effect for menu buttons */
+.css-1tqrhto > .ps-menu-button:hover,
+.css-1t8x7v1 > .ps-menu-button:hover,
+.css-16jesut > .ps-menu-button:hover {
+  background-color: pink !important; /* Adjust hover color as needed */
+}
+.css-dip3t8 {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 3;
+  background-color: black !important;
 }

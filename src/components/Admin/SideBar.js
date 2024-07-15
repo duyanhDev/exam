@@ -5,7 +5,9 @@ import { MdDashboard } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { MdQuiz } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 const SideBar = (props) => {
+  const { t } = useTranslation();
   return (
     <div className="Sidebar">
       <Sidebar
@@ -28,20 +30,20 @@ const SideBar = (props) => {
             </Link>
           </MenuItem>
           <MenuItem> Calendar </MenuItem>
-          <SubMenu icon={<MdDashboard />} label="Tính Năng">
+          <SubMenu icon={<MdDashboard />} label={t("dash.setting")}>
             <MenuItem lassName="title">
               <Link className="link-to" to={"/admins/manage-users"}>
-                <FaUser /> Quản Lí User{" "}
+                <FaUser /> {t("dash.user")}
               </Link>
             </MenuItem>
             <MenuItem className="title">
               <Link className="link-to" to={"/admins/manage-quizzes"}>
-                <MdQuiz /> Quản Lí Bài Quiz
+                <MdQuiz /> {t("dash.quiz")}
               </Link>
             </MenuItem>
             <MenuItem className="title">
               <Link className="link-to" to={"/admins/manage-questions"}>
-                <MdQuiz /> Quản Lí Câu Hỏi
+                <MdQuiz /> {t("dash.ans")}
               </Link>
             </MenuItem>
           </SubMenu>

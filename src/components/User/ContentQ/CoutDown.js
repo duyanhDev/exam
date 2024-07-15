@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const CoutDown = (props) => {
-  const [count, setCount] = useState(300);
+  const [count, setCount] = useState(1800);
 
   useEffect(() => {
     if (count === 0) {
